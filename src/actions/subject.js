@@ -2,7 +2,7 @@
 
 export const fetchSubjects = () => dispatch => {
     dispatch(fetchSubjectsRequest());
-    return fetch('/subjects').then(res => {
+    return fetch('/topics').then(res => {
         if (!res.ok) {
             throw new Error(res.statusText);
         }
