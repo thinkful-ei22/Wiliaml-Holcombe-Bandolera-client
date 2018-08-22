@@ -1,14 +1,18 @@
 import  { API_BASE_URL } from '../../src/config';
 
-export const addSnippet = (snippetAddress, 
-    snippetDescription, currentSubtopic) => dispatch => {
+export const addSnippet = (newImage, headers) => dispatch => {
     dispatch(fetchSnippetsRequest());
-    return fetch(`${API_BASE_URL}/snippets`, {
+    //console.log(newImage);
+    console.log(newImage.title, newImage.image, newImage.subtopicId,
+    newImage.userId)
+    return fetch(`${API_BASE_URL}/api/snippets`, {
         method:'POST',
-        data: { title: snippetDescription,
-                image: snippetAddress,
-                subtopicId: currentSubtopic
-        }
+        headers,
+        body: JSON.stringify({ title: newImage.title,
+                image: newImage.image,
+                subtopicId: newImage.subtopicId,
+                userId: newImage.userId
+        })
         })
     .then(res => {
         if (!res.ok) {

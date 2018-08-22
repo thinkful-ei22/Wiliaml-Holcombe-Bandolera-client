@@ -20,7 +20,8 @@ import thunk from 'redux-thunk';
 import{ subjectsReducer } from './reducers/subject';
 import authReducer from './reducers/auth';
 import { composeWithDevTools } from 'redux-devtools-extension';
-
+import {setAuthToken, refreshAuthToken} from './actions/auth';
+import {loadAuthToken} from './local-storage';
 
 const reducer = combineReducers({
     login: loginReducer,
@@ -38,6 +39,14 @@ const store = createStore(
    
      );
 store.getState();
+
+const authToken = loadAuthToken();
+if (authToken) {
+    const token = authToken;
+    store.dispatch(setAuthToken(token));
+    store.dispatch(refreshAuthToken());
+}
+
 
 ReactDOM.render(
     <Provider store={store} >

@@ -1,11 +1,10 @@
+import  { API_BASE_URL } from '../../src/config';
 
-export const fetchSnippets = () => dispatch => {
+export const fetchSnippets = (headers) => dispatch => {
     dispatch(fetchSnippetsRequest());
-    return fetch('/snippets?').then(res => {
-        if (!res.ok) {
-            throw new Error(res.statusText);
-        }
-        return res.json()
+    return fetch(`${API_BASE_URL}/api/snippets`, {
+        method:'GET',
+        headers
     }).then(data =>
         dispatch(fetchSnippetsSuccess(data))
     ).catch(err =>

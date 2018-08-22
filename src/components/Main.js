@@ -8,8 +8,9 @@ import {selectSubtopic, unselectSubtopic, toggleDisplayNewSnippetForm}
      import { addSnippet } from '../actions/addSnippet';
 //import  { fetchSubtopics } from '../actions/subtopic';
 import { reduxForm, Field } from 'redux-form';
+import { fetchSnippets } from '../actions/snippet';
 //import NewSnippetModal from './NewSnippetModal';
-import NewSnippetForm from './NewSnippetModal';
+import NewSnippetPage from './new-snippet-page';
 
 export class Main extends React.Component {
 onSubmit(values){
@@ -24,10 +25,14 @@ onSubmit(values){
   //       };
   //       this.handleSubmit = this.handleSubmit.bind(this);
   //    }
-  //    componentDidMount(){
-  //     console.log('Main Component did mount');
-  //     this.props.dispatch(fetchSubtopics());
-  // }
+     componentDidUpdate(){
+      console.log('Main Component did mount');
+      const headers = {
+        'Authorization': 'Bearer ' + this.props.authToken,
+        'Content-Type' : 'application/json'
+      };
+      this.props.dispatch(fetchSnippets(headers));
+   }
 
   handleChange (evt) {
     // check it out: we get the evt.target.name (which will be either "email" or "password")
@@ -42,9 +47,9 @@ onSubmit(values){
       this.props.dispatch(toggleDisplayNewSnippetForm())
     }
       showModal(subtopic){
-        //this.setState({currentSubtopic: subtopic});
-        //console.log(selectSubtopic, this.props);
-        this.props.dispatch(selectSubtopic(subtopic));
+       
+        const subtopicId = subtopic._id;
+        this.props.dispatch(selectSubtopic(subtopicId));
       }
       hideModal(){
        // this.setState({currentSubtopic: null});
@@ -57,25 +62,7 @@ onSubmit(values){
         this.setState({search: event.target.value})
       }
 
-      // getBase64 = (file) => {
-      //   return new Promise((resolve, reject) => {
-      //     const reader = new FileReader();
-      //     reader.readAsDataURL(file);
-      //     reader.onload = () => resolve(reader.result);
-      //     reader.onerror = error => reject(error);
-      //   });
-      // }
-
-      // onFileChange(e){
-      //   const { input } = this.props;
-      //   const targetFile = e.target.files[0]
-      //   if (targetFile) {
-      //     const val = await this.getBase64(targetFile)
-      //     input.onChange(val)
-      //   } else {
-      //     input.onChange(null)
-      //   }
-      // }
+      
     
       render(){
         //console.log('Over Here', this.props);
@@ -101,12 +88,13 @@ onSubmit(values){
         let snippetsModal = null;
         //console.log('Nothing Selected yet', this.props.snippets);
         if(this.props.currentSubtopic){
-          
+         // console.log('loading snippets');
+         console.log(this.props.snippets, this.props.currentSubtopic)
          snippetsModal = <div className="modal">
-            <a onClick={() => this.hideModal()}>Close</a>
+            <a onClick={() => this.hideModal()}>Close</a><br/><br/>
             
             {this.props.snippets.filter(snippet => snippet.subtopicId === 
-                this.props.currentSubtopic._id).map(snippet => 
+                this.props.currentSubtopic).map(snippet => 
                 <li>{snippet.title}
                 <img src={snippet.image} alt="img-alt"/></li>)}
 
@@ -118,7 +106,7 @@ onSubmit(values){
         let newSnippetFormModal;
         if(this.props.displaySnippetForm){
 
-          newSnippetFormModal = <NewSnippetForm />
+          newSnippetFormModal = <NewSnippetPage />
          
       
          
@@ -142,7 +130,8 @@ export const mapStateToProps = state => ({
    snippets: state.app.snippets,
    currentSubtopic: state.app.currentSubtopic,
    displaySnippetForm: state.app.displaySnippetForm,
-   topicId: state.app.topicId
+   topicId: state.app.topicId,
+   authToken: state.auth.authToken
 })
  export default connect(mapStateToProps)(Main);
 

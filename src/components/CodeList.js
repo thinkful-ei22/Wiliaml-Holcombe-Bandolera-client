@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect } from 'react-redux';
 import Main from './Main';
+import {Link, Redirect} from 'react-router-dom';
 //key={index}
 //import RegisterUserForm from './RegisterUser';
 import { setTopicId } from '../actions/subtopic';
@@ -11,22 +12,20 @@ import { fetchSubjects } from '../actions/subject';
 export class CodeList extends React.Component {
 
     componentDidMount(){
-        //console.log('Component did mount');
-        //console.log(this.props);
+      
         this.props.dispatch(fetchSubjects());
     }
 
 handleClick(topicId) {
-    //event.preventDefault();
-    //console.log('Working', event);
-
-    //const targetTopicId  = event.currentTarget
-   // const subtopicsToDisplay = Subtopic.find({ topicId: targetTopicId }, userId);
+    
    
     this.props.dispatch(setTopicId(topicId));
 }
-//const subjectId = subject._id
-    //console.log(props.subjects);
+
+newTopic(){
+
+}
+
     render() {
         
         const subjectsList = this.props.subjects.map(
@@ -50,18 +49,12 @@ handleClick(topicId) {
                     main = <Main /> ;
 
                  let login;
-                 //change to !
-                 console.log(this.props.showCodelist);
-            // if (this.props.showCodelist){
-            //     login = <RegisterUserForm />
-            // }
-
-            // {login}
+      
 
 
         return (
             <div>
-                <p> Here </p>
+               
             <div >
             <header>
                
@@ -77,7 +70,8 @@ handleClick(topicId) {
                                 
                                 </ul>
                              </nav>
-                             <a onClick={() => this.newTopic()}>New</a>
+                             <Link to="/newTopic">New</Link>
+                             
                         </aside>
              {main}
         </div>
@@ -95,7 +89,7 @@ export const mapStateToProps = state => ({
    
 })
 export default connect(mapStateToProps)(CodeList);
-
+{/* <a onClick={() => this.newTopic()}>New</a> */}
 // <header>
 // <a href="#" className="toggle-menu fontawesome-reorder"></a>
 //  <h1>Bandelero</h1>
