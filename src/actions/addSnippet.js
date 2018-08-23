@@ -5,15 +5,15 @@ export const addSnippet = (newImage, headers) => dispatch => {
     //console.log(newImage);
     console.log(newImage.title, newImage.image, newImage.subtopicId,
     newImage.userId)
-    return fetch(`${API_BASE_URL}/api/snippets`, {
+    return fetch(`${API_BASE_URL}/api/snippets`, JSON.stringify( {
         method:'POST',
         headers,
-        body: JSON.stringify({ title: newImage.title,
+        body: { title: newImage.title,
                 image: newImage.image,
                 subtopicId: newImage.subtopicId,
                 userId: newImage.userId
-        })
-        })
+        }
+        }))
     .then(res => {
         if (!res.ok) {
             throw new Error(res.statusText);

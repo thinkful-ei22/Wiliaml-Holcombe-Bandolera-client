@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect } from 'react-redux';
-import Main from './Main';
+import SubtopicBoard from './subtopic-board';
 import {Link, Redirect} from 'react-router-dom';
 //key={index}
 //import RegisterUserForm from './RegisterUser';
@@ -46,7 +46,7 @@ newTopic(){
                     subject => subject._id === this.props.topicId).title
                     }
 
-                    main = <Main /> ;
+                    main = <SubtopicBoard /> ;
 
                  let login;
       
@@ -70,8 +70,8 @@ newTopic(){
                                 
                                 </ul>
                              </nav>
-                             <Link to="/newTopic">New</Link>
-                             
+                             <Link to="topics/newTopic">New</Link><br/><br/><br/><br/>
+                             <Link to="/">Logout</Link>
                         </aside>
              {main}
         </div>

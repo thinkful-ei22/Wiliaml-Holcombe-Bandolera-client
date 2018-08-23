@@ -37,7 +37,7 @@ render(){
               <Field name="topic" id="new-topic-id" type="text"
               component="input"/><br/>
               <button type="submit">Submit</button><br/><br/><br/>
-              <Link to="/subtopics">Cancel</Link>
+              <Link to="/topics">Back</Link>
             </form>
             
         </div>

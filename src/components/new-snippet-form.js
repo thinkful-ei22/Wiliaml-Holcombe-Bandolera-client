@@ -28,7 +28,7 @@ export class NewSnippetForm extends React.Component {
 render(){ 
  return( 
         <div>
-            <a onClick={this.props.onClick}>Cancel</a><br/>
+            <a onClick={this.props.onClick}>Back</a><br/>
                 <form onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
                         )}><br/><br/>

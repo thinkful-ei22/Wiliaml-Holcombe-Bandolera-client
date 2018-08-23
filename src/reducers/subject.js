@@ -14,16 +14,7 @@ import { FETCH_SUBTOPICS_REQUEST, SET_TOPICID_SUCCESS,
             from '../actions/selectSubtopic';
 
 const initialState = {
-    // subjects: [{
-    //     title: 'React',
-    //     content: 'impsum'
-    // },{
-    //     title: 'Node',
-    //     content: 'impsum' 
-    // },{
-    //     title: 'CSS',
-    //     content: 'impsum' 
-    // }], 
+   
     subjects: [
         {
           "userId": "333333333333333333333301",
@@ -63,44 +54,8 @@ const initialState = {
       ],
 
     topicId: null,
-    subtopics:
-    // [{
-    //     title: 'Sticking Points',
-    //     content: 'impsum'
-    // },{
-    //     title: 'Different ways to work with state',
-    //     content: 'impsum' 
-    // },{
-    //     title: 'Redux',
-    //     content: 'impsum',
-    //     snippets:'000001' 
-    // }], 
-    [
-        {
-          "userId": "333333333333333333333301",
-          "topicId":"444444444444444444444402",
-          "_id": "111111111111111111111100",
-          "title": "Other things to do with Node"
-        },
-        {
-          "_id": "111111111111111111111101",
-          "userId":  "333333333333333333333301",
-          "topicId": "444444444444444444444402",
-          "title": "API sticking points"
-        },
-        {
-          "_id": "111111111111111111111102",
-          "userId": "333333333333333333333301",
-          "topicId":"444444444444444444444403",
-          "title": "Personal"
-        },
-        {
-          "_id":    "111111111111111111111103",
-          "topicId":"444444444444444444444401",
-          "title": "Work",
-          "userId": "333333333333333333333301"
-        }
-      ],
+
+    
       showCodelist: null,
       displaySnippetForm: null,
     snippets:
@@ -205,7 +160,7 @@ if(action.type === FETCH_SUBJECTS_REQUEST){
 
 } else if(action.type === FETCH_SUBJECTS_SUCCESS){
     return Object.assign({}, state, {
-        subjects: action.subjects,
+        subjects: state.subjects.concat([action.subjects]),
         loading:false,
 
     });
@@ -250,7 +205,7 @@ else if(action.type === FETCH_SUBTOPICS_REQUEST){
     //     return subtopic.
     // })
     return Object.assign({}, state, {
-        topicId1: action.snippets,
+        snippets: state.snippets.concat([action.snippets]),
         loading:false,
 
     });

@@ -11,6 +11,7 @@ import App from './components/App';
 import {reducer as formReducer} from 'redux-form'
 
 import loginReducer from './reducers/loginReducer';
+import {subtopicReducer} from './reducers/subtopic';
 
 import './index.css';
 
@@ -26,6 +27,7 @@ import {loadAuthToken} from './local-storage';
 const reducer = combineReducers({
     login: loginReducer,
     app: subjectsReducer,
+    subtopics: subtopicReducer,
     form: formReducer,
     auth: authReducer
    

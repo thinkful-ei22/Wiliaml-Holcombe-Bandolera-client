@@ -3,11 +3,12 @@ import  { API_BASE_URL } from '../../src/config';
 export const addTopic = (newTopic, headers) => dispatch => {
     dispatch(fetchSubjectsRequest());
     //console.log(newImage);
+    console.log(newTopic);
     return fetch(`${API_BASE_URL}/api/topics`, {
         method:'POST',
         headers,
-        data: { title: newTopic.title,
-        }    
+        body: JSON.stringify({ title: newTopic
+        } )   
         })
     .then(res => {
         if (!res.ok) {
