@@ -28,21 +28,16 @@ export class SubtopicBoard extends React.Component {
     }
 
   
-      showModal(subtopic){
+      setSubtopic(subtopic){
        
         const subtopicId = subtopic._id;
+        console.log(subtopic);
         this.props.dispatch(selectSubtopic(subtopicId));
       }
-      hideModal(){
-       // this.setState({currentSubtopic: null});
-       this.props.dispatch(unselectSubtopic());
-      }
-
-      // addSnippet(event){
-      //   console.log(event.target.find());
-      //   console.log(this.state.newSnippetAddress);
-      //   this.setState({search: event.target.value})
-      // }
+             hideModal(){
+       
+                 this.props.dispatch(unselectSubtopic());
+                     }
 
 
   
@@ -62,6 +57,7 @@ export class SubtopicBoard extends React.Component {
         // TODO: Add the card or list
         this.props.dispatch(addSubtopic(newSubtopic, headers));
         this.textInput.value = '';
+        this.forceUpdate();
     }
       setEditing(editing) {
         this.setState({
@@ -73,30 +69,34 @@ export class SubtopicBoard extends React.Component {
         
         let subtopicsDisplay;
           if(this.props.topicId){
-            console.log(this.props.subtopics.filter( 
-              subtopic => subtopic.topicId ===
-              this.props.topicId));
+            // console.log(this.props.subtopics.filter( 
+            // console.log('HALO', this.props.subtopics);
+            //   subtopic => {
+            //     console.log('>>>>>>', subtopic);
+            //     subtopic.topicId ===
+            //   this.props.topicId
+            //   })
+            // );
 
              subtopicsDisplay  = 
              <div className="subtopics-display">
                 {this.props.subtopics.filter( 
                  subtopic => subtopic.topicId ===
                  this.props.topicId)
-             .map(subtopic => <li  onClick={() => 
-                 this.showModal(subtopic)}>{subtopic.title}</li>)}
+             .map((subtopic, i) => <li  onClick={() => 
+                 this.setSubtopic(subtopic)}>{subtopic.title}</li>)}
                  {addNewSubtopic}
                  </div>
           }
         let snippetsModal = null;
-        //console.log('Nothing Selected yet', this.props.snippets);
+  
         if(this.props.currentSubtopic){
-         // console.log('loading snippets');
-         console.log(this.props.snippets, this.props.currentSubtopic)
+       
          snippetsModal = <div className="modal">
             <a onClick={() => this.hideModal()}>Close</a><br/><br/>
-            
+            <h3>Code to Master</h3>
             {this.props.snippets.filter(snippet => snippet.subtopicId === 
-                this.props.currentSubtopic).map(snippet => 
+                this.props.currentSubtopic).map((snippet, i) => 
                 <li>{snippet.title}
                 <img src={snippet.image} alt="img-alt"/></li>)}
 
@@ -140,7 +140,7 @@ export class SubtopicBoard extends React.Component {
             {subtopicsDisplay}
             {snippetsModal}
             {newSnippetFormModal}<br/><br/><br/><br/>
-            
+            {this.props.topicId && addNewSubtopic}
           </div>
         );
       }

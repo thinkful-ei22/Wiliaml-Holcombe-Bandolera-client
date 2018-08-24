@@ -27,6 +27,7 @@ export class Snippets extends React.Component {
     
         return (
                 <div>
+                    <h1>GOPHER</h1>
                     <ul>
                       {snippetsList}
                     </ul>

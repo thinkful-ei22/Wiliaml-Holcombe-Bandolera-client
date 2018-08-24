@@ -6,6 +6,8 @@
     "antd": "^3.8.2",
     "cloudinary-react": "^1.0.6",
     "compass": "^0.1.1",
+    "enzyme": "^3.4.4",
+    "enzyme-adapter-react-16": "^1.2.0",
     "jwt-decode": "^2.2.0",
     "mongoose": "^5.2.7",
     "node-sass": "^4.9.3",

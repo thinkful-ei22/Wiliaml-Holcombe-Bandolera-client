@@ -184,7 +184,7 @@ else if(action.type === FETCH_SUBTOPICS_REQUEST){
 } else if(action.type === FETCH_SUBTOPICS_SUCCESS){
     return Object.assign({}, state, {
         loading:false,
-        subtopics: action.subtopics
+        subtopics: state.subtopics.concat([action.subtopic])
 
     });
 } else if(action.type === FETCH_SUBTOPICS_ERROR){

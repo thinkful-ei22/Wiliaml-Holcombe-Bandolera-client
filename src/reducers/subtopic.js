@@ -23,7 +23,7 @@ const initialState = {
         {
           "_id":    "111111111111111111111103",
           "topicId":"444444444444444444444401",
-          "title": "WorkLIFEBalance>>>>>>>>>>>>",
+          "title": "Testing",
           "userId": "333333333333333333333301"
         }
       ],
@@ -37,7 +37,7 @@ export const subtopicReducer = (state = initialState, action) => {
  
  } else if(action.type === ADD_SUBTOPIC_SUCCESS){
      return Object.assign({}, state, {
-         subtopics: state.subtopics.concat([action.subtopics]),
+         subtopics: state.subtopics.concat([action.subtopic]),
          loading:false,
  
      });

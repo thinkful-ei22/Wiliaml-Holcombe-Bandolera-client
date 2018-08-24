@@ -4,7 +4,7 @@ import  { API_BASE_URL } from '../../src/config';
 export const addSubtopic = (newSubtopic, headers) => dispatch => {
     dispatch(addSubtopicRequest());
     //console.log(newImage);
-    console.log(newSubtopic);
+    console.log("ICE CRIMMM", newSubtopic);
     return fetch(`${API_BASE_URL}/api/subtopics`, {
         method:'POST',
         headers,
