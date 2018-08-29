@@ -53,7 +53,6 @@ export class RegistrationForm extends React.Component {
 export const mapStateToProps = state => ({
     subtopics: state.app.subtopics,
     snippets: state.app.snippets,
-    currentSubtopic: state.app.currentSubtopic,
     displaySnippetForm: state.app.displaySnippetForm,
     topicId: state.app.topicId
  })

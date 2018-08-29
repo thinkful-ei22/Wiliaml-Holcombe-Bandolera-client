@@ -57,7 +57,7 @@ export class SubtopicBoard extends React.Component {
         // TODO: Add the card or list
         this.props.dispatch(addSubtopic(newSubtopic, headers));
         this.textInput.value = '';
-        this.forceUpdate();
+        //this.forceUpdate();
     }
       setEditing(editing) {
         this.setState({
